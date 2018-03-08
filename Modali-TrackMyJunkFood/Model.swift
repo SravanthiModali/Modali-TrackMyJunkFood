@@ -35,33 +35,36 @@ class FoodRecorder {
         
     }
     
-    func getCalories(forItime i:Int) -> Double {
-        var totalCalories:Double = Food[i].Calories * Food[i].Tally
+    func getCalories(forItem i:Int) -> Double {
+        var totalCalories:Double = Food[i].Calories * Double(Food[i].Tally)
         return totalCalories
     }
     
-    func report(forItem i:int) {
-        return "The calories consumed for \(Food[i].name) is \(getCalories())."
+    func report(forItem i:Int) -> String {
+        print("The calories consumed for \(Food[i].Name) is \(getCalories(forItem: i)).")
+        return "The calories consumed for \(Food[i].Name) is \(getCalories(forItem: i))."
     }
     
     func totalCalories() -> Double {
         var sumOfCal = 0.0
         for i in Food {
-            sumOfCal += Food[i].Calories * Food[i].Tally
+            sumOfCal += i.Calories * Double(i.Tally)
+
         }
         return sumOfCal
     }
     
     func combinedReport() -> String {
         var ItemReport: String = ""
-        for i in Food {
-            ItemReport += report(i) + "\n"
+        for i in 0..<Food.count {
+            print(" in for")
+            ItemReport += report(forItem: i) + "\n"
         }
         return ItemReport + "\n Total calories consumed \(totalCalories())."
     }
     
     func reset() {
-        for i in Food {
+        for i in 0..<Food.count {
             Food[i].Tally = 0
         }
     }
