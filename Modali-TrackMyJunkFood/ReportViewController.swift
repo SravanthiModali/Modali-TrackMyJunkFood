@@ -12,10 +12,17 @@ class ReportViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         AppDelegate.myModel.loadData()
         reportTV.text = AppDelegate.myModel.combinedReport()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reportTV.text = AppDelegate.myModel.combinedReport()
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +32,8 @@ class ReportViewController: UIViewController {
     
     @IBAction func resetBTN(_ sender: UIButton) {
       AppDelegate.myModel.reset()
+        reportTV.text = AppDelegate.myModel.combinedReport()
+
     }
     
     @IBOutlet weak var reportTV: UITextView!

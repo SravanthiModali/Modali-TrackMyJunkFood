@@ -10,7 +10,8 @@ import UIKit
 
 class RecordTableViewController: UITableViewController {
 
-    var food = ["chicken","mutton","eggs"]
+//    var food = ["chicken","mutton","eggs"]
+    var food = AppDelegate.myModel.Food
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,10 +44,23 @@ class RecordTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "food_cell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = food[indexPath.row]
+        cell.textLabel?.text = "\(food[indexPath.row].Name) :  \(food[indexPath.row].Calories)"
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        AppDelegate.myModel.increaseTally(forItem: indexPath.row)
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print("here")
+//        print("segue.identifier",segue.identifier)
+//        if segue.identifier == "goBack" {
+//            print("in segue")
+//            var selectedRow = self.tableView.indexPathForSelectedRow
+//        }
+//    }
 
 
     /*

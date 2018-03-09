@@ -18,6 +18,8 @@ struct FoodData {
 class FoodRecorder {
     var Food : [FoodData]
     
+    var firstLoad : Bool = true
+    
     init(){
         Food = []
         
@@ -41,7 +43,6 @@ class FoodRecorder {
     }
     
     func report(forItem i:Int) -> String {
-        print("The calories consumed for \(Food[i].Name) is \(getCalories(forItem: i)).")
         return "The calories consumed for \(Food[i].Name) is \(getCalories(forItem: i))."
     }
     
@@ -57,7 +58,6 @@ class FoodRecorder {
     func combinedReport() -> String {
         var ItemReport: String = ""
         for i in 0..<Food.count {
-            print(" in for")
             ItemReport += report(forItem: i) + "\n"
         }
         return ItemReport + "\n Total calories consumed \(totalCalories())."
